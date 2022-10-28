@@ -1,6 +1,7 @@
 :root {
   --background1-color: #F5ECEE;
   --background2-color: #716F70;
+  --background-tab-color: lightgrey;
   --navigation-color: #f17351;
   --link-color: #FF33A0;
   --border-color: #66005F;
@@ -57,14 +58,15 @@ header {
 }
 
 header h1 {
-  font-family: Pacifico, cursive;
   font-size: 400%;
   color: var(--heading-color);
+  text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
 }
 
 h2{
     font-size:180%;
     font-weight: bold;
+    text-align: center;
     margin-top: 80px;
     margin-bottom: 40px;
     margin-left: 30px;
@@ -72,12 +74,30 @@ h2{
 }
 
 h3{
-    font-size:120%;
+    font-size:130%;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
     color: var(--heading-color);
+    border-bottom: 5px solid var(--border-color);
 }
+
+h4{
+    font-size:110%;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+}
+
+h5{
+    font-size:95%;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
 
 p{
     overflow-x:hidden;
@@ -90,9 +110,11 @@ p{
 }
 
 ul{
-    margin-left: 25px;
-    margin-bottom: 10px;
-    list-style: square inside;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  list-style: '\2730' inside;
+  line-height: 160%;
 }
 
 .cont{
@@ -142,4 +164,41 @@ nav a{
 
 nav a:hover{
   color: var(--link-color);
+}
+
+
+caption {
+  padding: 8px;
+  margin-bottom: 5px;
+  color: var(--heading-color);
+  text-decoration: underline solid;
+  font-size:85%;
+}
+
+.prettytab {
+  border: 2px solid var(--background2-color);
+}
+
+.headcells {
+  background-color: var(--background2-color);
+  border: 2px solid var(--background2-color);
+  border-collapse: collapse;
+  padding: 8px;
+  color: white;
+  font-size:65%;
+}
+
+.cells {
+  background-color: var(--background-tab-color);
+  border: 2px solid var(--background2-color);
+  border-collapse: collapse;
+  padding: 8px;
+  font-size:65%;
+}
+
+pre{
+  margin: 20px auto 20px auto;
+  border: 2px solid var(--background2-color);
+  background-color: var(--background-tab-color);
+  font-family: "Courier";
 }

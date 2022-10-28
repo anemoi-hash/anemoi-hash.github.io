@@ -14,14 +14,16 @@
     <header>
       <table><tr>
         <td><h1>Anemoi &emsp;&emsp;</h1></td>
-        <td><img src="logo-anemoi.png" alt="logo" width="250px"/></td>
+        <td><img src="Figures/logo-anemoi.png" alt="logo" width="250px"/></td>
       </tr></table>
     </header>
     
     <nav>
     <ul>
-    <li> <a href="#intro">
-        Intro</a></li>
+    <li> <a href="#news">
+        News</a></li>
+    <li> <a href="#abstract">
+        Abstract</a></li>
     <li> <a href="#description">
         Description</a></li>
     <li> <a href="#team">
@@ -30,38 +32,143 @@
   </nav>
     
     <h2>A Family of ZK-friendly AO Hash Functions.</h2>
-    
+
     <div class="cont">
       <div class="section" id="intro">
         <p>Anemoi is part of the <b>Arithmetization-Oriented</b> (AO) primitives designed for 
         advanced cryptographic protocols such as <b>Zero-knowledge</b> (ZK) proofs of 
-        knowledge.<br>
+        knowledge.
         More precisely,	Anemoi is a new family of ZK-friendly permutations, that can 
-        be used to construct efficient hash functions and compression functions.</p>
+        be used to construct efficient hash functions and compression functions.<br>
 
-        <p> For more details, please find bellow the following resources:
+        A short description of the design is provided on this page. For more details, please find bellow the following resources:
         <ul>
-          <li> Our paper on ePrint: <a href="https://eprint.iacr.org/2022/840">https://eprint.iacr.org/2022/840</a>.</li>
-          <li> Our Git repository: <a href="https://github.com/vesselinux/anemoi-hash/">https://github.com/vesselinux/anemoi-hash/</a>.</li>
+          <li> Our paper on ePrint: <a href="https://ia.cr/2022/840">https://ia.cr/2022/840</a>.</li>
+          <li> Our Git repository: <a href="https://github.com/anemoi-hash/anemoi-hash">https://github.com/anemoi-hash/anemoi-hash</a>.</li>
         </ul>
         </p>
       </div>
 
-      <div class="section" id="description">
-        <h3>Description:</h3>
-        
-        <h4>The Flystel</h4>
-          <table><tr>
-            <td><img src="flystel-char2.png" alt="flystel-F2n" width="200px"/></td>
-            <td><img src="flystel-prime.png" alt="flystel-Fp" width="200px"/></td>
-          </tr></table>
+      <div class="section" id="news">
+        <h3>News</h3>
+        <ul>
+          <li> <b>22.10.22:</b> Acceptation for presentation at the <a href="https://zkproof.org/events/workshop5/">ZKProof5</a> workshop in Tel Aviv.</li>
+          <li> <b>17.10.22:</b> Revised ePrint submission with better implementations provided by our new co-authors.</li>
+          <li> <b>24.06.22:</b> First ePrint submission.</li>
+        </ul>
+      </div>
 
-        <h4>Jive</h4>
+
+      <div class="section" id="abstract">
+        <h3>Abstract</h3>
+
+        <p style="font-size: 90%">Advanced cryptographic protocols such as Zero-knowledge (ZK) proofs of knowledge, widely used in cryptocurrency applications such as Zcash, Monero, Filecoin, demand new cryptographic hash functions that are efficient not only over the binary field F2, but also over large fields of prime characteristic Fp. This need has been acknowledged by the wider community and new so-called <i>Arithmetization-Oriented</i> (AO) hash functions have been proposed, e.g. MiMC-Hash, Rescue–Prime, Poseidon, Reinforced Concrete and Griffin to name a few. <br>
+        In this paper we propose Anemoi: a new family of ZK-friendly permutations, that can be used to construct efficient hash functions and compression functions. The main features of these algorithms are that 1) they are designed to be efficient within multiple proof systems (e.g. Groth16, Plonk, etc.), 2) they contain dedicated functions optimised for specific applications (namely Merkle tree hashing and general purpose hashing), 3) they have highly competitive performance e.g. about a factor of 2 improvement over Poseidon and Rescue–Prime in terms of R1CS constraints, a 28%-48% Plonk constraint reduction over a highly optimized Poseidon implementation, as well as competitive native performance, running between two and three times faster than Rescue–Prime, depending on the field size. <br>
+        On the theoretical side, Anemoi pushes further the frontier in understanding the design principles that are truly entailed by arithmetization-orientation. In particular, we identify and exploit a previously unknown relationship between CCZ-equivalence and arithmetization-orientation. In addition, we propose two new standalone components that can be easily reused in new designs. One is a new S-box called Flystel, based on the well-studied butterfly structure, and the second is Jive – a new mode of operation, inspired by the “Latin dance” symmetric algorithms (Salsa, ChaCha and derivatives).</p>
+
+    </div>
+
+
+
+      <div class="section" id="description">
+        <h3>Description</h3>
         
+        <h4>Round Function</h4>
+        <h5>S-box: the Flystel</h5>
+
+        <div style='display:flex'>
+          <table>
+            <caption>Flystel in F2n.</caption>
+            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="200px"/></td>
+          </table>
+          <table>
+            <caption>Flystel in Fp.</caption>
+            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="200px"/></td>
+          </table>
+        </div>
+
+
+        <!-- <h5>Linear layer</h5> -->
+
+
+        <h5>Constants addition</h5>
+        Round constants are given using the following procedure:
+
+  <pre style="width: 490px;">
+  c^r_i &larr; g(&pi;^r_0)^2 + (&pi;^r_0 + &pi;^i_1)^&alpha;
+  d^r_i &larr; g(&pi;^i_1)^2 + (&pi;^r_0 + &pi;^i_1)^&alpha; + g^(-1)</pre>
+
+        where &pi;_0 and &pi;_1 are derived using the digits of &pi;:
+  <pre style="width: 850px; font-size: 80%;">
+  &pi;_0&nbsp;=&nbsp;1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+  &pi;_1&nbsp;=&nbsp;8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196</pre>
+
+
+      <h4>Anemoi Permutations</h4>
+
+        <h5>The SPN construction</h5>
+
+        <table>
+          <caption>Overview of the SPN construction for l > 1.</caption>
+          <td><img src="Figures/SPN-flystel.png" alt="SPN-flystel" height="400px"/></td>
+        </table>
+
+  <pre style="width: 330px;">
+  <i>Constant addition</i>
+  for i &isin; {0, ..., l - 1} do
+    x_i &larr; x_i + c^r_i
+    y_i &larr; y_i + d^r_i
+  end for
+
+  <i>Linear layer M</i>
+  if l &#62; 1 then
+    X &larr; M_x(X)
+    Y &larr; M_x(&rho;(Y))
+  else
+    (x_0, y_0) ← M_x(x_0, y_0)
+  end if
+
+  <i>S-box layer H</i>
+  for i &isin; {0, ..., l - 1} do
+    x_i &larr; x_i − g Q(y_i)
+    y_i &larr; y_i − (x_i)^(1/&alpha;)
+    x_i &larr; x_i + g Q(y_i) + g - 1
+  end for
+
+  return (X, Y)</pre>
+
+
+        <h5>Number of rounds</h5>
+
+        <table class="prettytab">
+        <caption>Number of rounds for 128 bits of security.</caption>
+        <colgroup><col style="width:100px"><col><col><col><col><col><col></colgroup>
+          <tr> <th class="headcells">&alpha;</th> <th class="headcells">3</th> <th class="headcells">5</th> <th class="headcells">7</th> <th class="headcells">11</th> <th class="headcells">13</th> <th class="headcells">17</th> </tr>
+          <tr> <th class="headcells">l = 1</th> <td class="cells">19</td> <td class="cells">19</td> <td class="cells">18</td> <td class="cells">18</td> <td class="cells">17</td> <td class="cells">16</td> </tr>
+          <tr> <th class="headcells">l = 2</th>  <td class="cells">12</td> <td class="cells">12</td> <td class="cells">11</td> <td class="cells">11</td> <td class="cells">11</td> <td class="cells">10</td> </tr>
+          <tr> <th class="headcells">l = 3</th> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> </tr>
+          <tr> <th class="headcells">l = 4</th> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> </tr>
+        </table>
+
+
+        <h4>Mode: Jive</h4>
+        
+        <div style='display:flex'>
+          <table>
+            <caption>Jive with 2 branches.</caption>
+            <td><img src="Figures/mode.png" alt="mode-2" height="200px"/></td>
+          </table>
+          <table>
+            <caption>Jive with b branches.</caption>
+            <td><img src="Figures/mode-b.png" alt="mode-b" height="200px"/></td>
+          </table>
+        </div>
+
+
       </div>
 
       <div class="section" id="team">
-        <h3>Anemoi team:</h3>
+        <h3>Anemoi team</h3>
         <ul>
           <li> <a href="https://who.rocq.inria.fr/Clemence.Bouvier/">Clémence Bouvier</a>, Sorbonne University, France - Inria, France</li>
           <li> <a href="https://who.rocq.inria.fr/Pierre.Briaud/">Pierre Briaud</a>, Sorbonne University, France - Inria, France</li>
@@ -71,6 +178,23 @@
           <li> Vesselin Velichkov, University of Edinburgh, Scotland - Clearmatics, England</li>
           <li> Danny Willems, Nomadic Labs, France - Inria & LIX, France</li>
         </ul>
+
+        <br>
+        <table>
+          <td><img src="Figures/logo_su.png" alt="logo-su" height="25px"/></td>
+          <td><img src="Figures/logo_inria.png" alt="logo-inria" height="25px"/></td>
+          <td><img src="Figures/logo_athens.png" alt="logo-athens" height="25px"/></td>
+          <td><img src="Figures/logo_toposware.png" alt="logo-toposware" height="25px"/></td>
+          <td><img src="Figures/logo_edinburgh.png" alt="logo-edinburgh" height="25px"/></td>
+          <td><img src="Figures/logo_clearmatics.png" alt="logo-clearmatics" height="25px"/></td>
+          <td><img src="Figures/logo_nomadic.png" alt="logo-nomadic" height="25px"/></td>
+          <td><img src="Figures/logo_lix.png" alt="logo-lix" height="25px"/></td>
+        </table>
+        
+
+
+
+
       </div>
 
     </div>
