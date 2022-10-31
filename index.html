@@ -26,6 +26,8 @@
         Abstract</a></li>
     <li> <a href="#description">
         Description</a></li>
+    <li> <a href="#story">
+        Story</a></li>
     <li> <a href="#team">
         Contact</a></li>
     </ul>
@@ -35,10 +37,10 @@
 
     <div class="cont">
       <div class="section" id="intro">
-        <p>Anemoi is part of the <b>Arithmetization-Oriented</b> (AO) primitives designed for 
+        <p><b>Anemoi</b> is part of the <b>Arithmetization-Oriented</b> (AO) primitives designed for 
         advanced cryptographic protocols such as <b>Zero-knowledge</b> (ZK) proofs of 
         knowledge.
-        More precisely,	Anemoi is a new family of ZK-friendly permutations, that can 
+        More precisely,	<b>Anemoi</b> is a new family of ZK-friendly permutations, that can 
         be used to construct efficient hash functions and compression functions.<br>
 
         A short description of the design is provided on this page. For more details, please find bellow the following resources:
@@ -74,35 +76,56 @@
         <h3>Description</h3>
         
         <h4>Round Function</h4>
-        <h5>S-box: the Flystel</h5>
+
+        <p>A round function is a permutation of F<sub>q</sub><sup>2l</sup>, where q is either a prime number or a power of 2.
+        The function applied at each round r has a classical <b>Substitution-Permutation Network</b> (SPN) structure: first the constant addition, then the linear layer, and finally the S-box layer.</p>
+
+       <h5>Constants addition</h5>
+        <p>Round constants are given using the following procedure:</p>
+
+  <pre style="width: 320px;">
+  c<sub>i</sub><sup>r</sup> &larr; g(&pi;<sub>0</sub><sup>r</sup>)<sup>2</sup> + (&pi;<sub>0</sub><sup>r</sup> + &pi;<sub>1</sub><sup>i</sup>)<sup>&alpha;</sup>
+  d<sub>i</sub><sup>r</sup> &larr; g(&pi;<sub>1</sub><sup>i</sup>)<sup>2</sup> + (&pi;<sub>0</sub><sup>r</sup> + &pi;<sub>1</sub><sup>i</sup>)<sup>&alpha;</sup> + g<sup>-1</sup></pre>
+
+        <p>where &pi;<sub>0</sub> and &pi;<sub>1</sub> are derived using the digits of &pi;:</p>
+  <pre style="width: 840px; font-size: 80%;">
+  &pi;<sub>0</sub>&nbsp;=&nbsp;1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+  &pi;<sub>1</sub>&nbsp;=&nbsp;8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196</pre>
+
+
+        <h5>Linear layer</h5>
+
+        <p>In practice, when l = 1, 2, 3 or 4, we use the matrices given by the following diagrams:</p>
 
         <div style='display:flex'>
           <table>
-            <caption>Flystel in F2n.</caption>
-            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="200px"/></td>
+            <caption>M for l = 1 or 2.</caption>
+            <td><img src="Figures/matrix2.png" alt="matrix2" height="200px"/></td>
           </table>
           <table>
-            <caption>Flystel in Fp.</caption>
-            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="200px"/></td>
+            <caption>M for l = 3.</caption>
+            <td><img src="Figures/matrix3.png" alt="matrix3" height="200px"/></td>
+          </table>
+          <table>
+            <caption>M for l = 4.</caption>
+            <td><img src="Figures/matrix4.png" alt="matrix4" height="200px"/></td>
           </table>
         </div>
 
 
-        <!-- <h5>Linear layer</h5> -->
+        <h5>S-box: the Flystel</h5>
 
-
-        <h5>Constants addition</h5>
-        Round constants are given using the following procedure:
-
-  <pre style="width: 490px;">
-  c^r_i &larr; g(&pi;^r_0)^2 + (&pi;^r_0 + &pi;^i_1)^&alpha;
-  d^r_i &larr; g(&pi;^i_1)^2 + (&pi;^r_0 + &pi;^i_1)^&alpha; + g^(-1)</pre>
-
-        where &pi;_0 and &pi;_1 are derived using the digits of &pi;:
-  <pre style="width: 850px; font-size: 80%;">
-  &pi;_0&nbsp;=&nbsp;1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
-  &pi;_1&nbsp;=&nbsp;8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196</pre>
-
+        <div style='display:flex'>
+          <table>
+            <caption>Flystel in F<sub>2<sup>n</sup></sub>.</caption>
+            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="200px"/></td>
+          </table>
+          <table>
+            <caption>Flystel in F<sub>p</sub>.</caption>
+            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="200px"/></td>
+          </table>
+        </div>
+ 
 
       <h4>Anemoi Permutations</h4>
 
@@ -113,32 +136,34 @@
           <td><img src="Figures/SPN-flystel.png" alt="SPN-flystel" height="400px"/></td>
         </table>
 
-  <pre style="width: 330px;">
+  <pre style="width: 320px;">
   <i>Constant addition</i>
   for i &isin; {0, ..., l - 1} do
-    x_i &larr; x_i + c^r_i
-    y_i &larr; y_i + d^r_i
+    x<sub>i</sub> &larr; x<sub>i</sub> + c<sub>i</sub><sup>r</sup>
+    y<sub>i</sub> &larr; y<sub>i</sub> + d<sub>i</sub><sup>r</sup>
   end for
 
   <i>Linear layer M</i>
   if l &#62; 1 then
-    X &larr; M_x(X)
-    Y &larr; M_x(&rho;(Y))
+    X &larr; M<sub>x</sub>(X)
+    Y &larr; M<sub>x</sub>(&rho;(Y))
   else
-    (x_0, y_0) ← M_x(x_0, y_0)
+    (x<sub>0</sub>, y<sub>0</sub>) &larr; M<sub>x</sub>(x<sub>0</sub>, y<sub>0</sub>)
   end if
 
   <i>S-box layer H</i>
   for i &isin; {0, ..., l - 1} do
-    x_i &larr; x_i − g Q(y_i)
-    y_i &larr; y_i − (x_i)^(1/&alpha;)
-    x_i &larr; x_i + g Q(y_i) + g - 1
+    x<sub>i</sub> &larr; x<sub>i</sub> − g Q(y<sub>i</sub>)
+    y<sub>i</sub> &larr; y<sub>i</sub> − (x<sub>i</sub>)<sup>1/&alpha;</sup>
+    x<sub>i</sub> &larr; x<sub>i</sub> + g Q(y<sub>i</sub>) + g - 1
   end for
 
   return (X, Y)</pre>
 
 
         <h5>Number of rounds</h5>
+
+        <p>The <b>Anemoi</b> permutation iterates n<sub>r</sub> rounds of the round function given above followed by a call to the linear layer. We give the number of rounds for different values of l and &alpha;.</p>
 
         <table class="prettytab">
         <caption>Number of rounds for 128 bits of security.</caption>
@@ -164,6 +189,28 @@
           </table>
         </div>
 
+      </div>
+
+      <div class="section" id="story">
+        <h3>Short story</h3>
+
+        <h4>On the name</h4>
+      <p><b>Anemoi</b> is a family of Greek Gods of winds, then it has loose connection to butterflies which fly in the air, and that inspired the design of the <b>Flystel</b>. The four wind directions also symbolize the spread geographical location of the <b>Anemoi</b> team.</p>
+            
+      <div style='display:flex'>
+        <table>
+        <td><img src="Figures/anemoi-alegory.png" alt="anemoi-alegory" height="200px"/></td>
+        </table>
+        <table>
+        <td><img src="Figures/anemoi-map.png" alt="anemoi-map" height="200px"/></td>
+        </table>
+      </div>
+
+        <h4>On the logo</h4>
+      <p>The butterflies: one with open wings, one with closed wings refer to the open and closed <b>Flystel</b>. The two variants are CCZ-equivalent which is symbolized by a mirror, more precisely a sun-shaped to highlight that the closed <b>Flystel</b> makes the strength of <b>Anemoi</b>. A cloud also reminds that <b>Anemoi</b> represents Gods of wind.</p>
+      <table><td><img src="Figures/logo-anemoi.png" alt="logo" width="150px"/></td></table>
+
+
 
       </div>
 
@@ -179,7 +226,9 @@
           <li> Danny Willems, Nomadic Labs, France - Inria & LIX, France</li>
         </ul>
 
-        <br>
+        <p>If you have any questions, please feel free to contact us at <a>anemoi@inria.fr</a>.</p>
+
+        <br><br>
         <table>
           <td><img src="Figures/logo_su.png" alt="logo-su" height="25px"/></td>
           <td><img src="Figures/logo_inria.png" alt="logo-inria" height="25px"/></td>
