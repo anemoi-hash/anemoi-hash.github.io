@@ -75,13 +75,31 @@
       <div class="section" id="description">
         <h3>Description</h3>
         
-        <h4>Round Function</h4>
+        <h4>Flystel and CCZ-equivalence</h4>
+        <p>The <b>Flystel</b> is a pair of functions inspired by the butterfly structure and a Feistel network. The open and closed <b>Flystel</b> rely on two quadratic functions Q<sub>&gamma;</sub>, Q<sub>&delta;</sub> and a permutation E as shown in the following figures.</p>
 
-        <p>A round function is a permutation of F<sub>q</sub><sup>2l</sup>, where q is either a prime number or a power of 2.
+        <div style='display:flex'>
+          <table>
+            <caption>Open Flystel H.</caption>
+            <td><img src="Figures/open-flystel.png" alt="open-flystel" height="200px"/></td>
+          </table>
+          <table>
+            <caption>Closed Flystel V.</caption>
+            <td><img src="Figures/closed-flystel.png" alt="closed-flystel" height="200px"/></td>
+          </table>
+        </div>
+
+        <p>While the open <b>Flystel</b> is a high degree permutation of (F<sub>q</sub>)<sup>2</sup> the closed <b>Flystel</b> is a low degree function of (F<sub>q</sub>)<sup>2</sup>. Besides, the two variants are <b>CCZ-equivalent</b>, meaning that it is possible to encode the verification of the evaluation of the open <b>Flystel</b> H using the polynomial representation of the closed <b>Flystel</b> V.</p>
+
+
+        <h4>Round Function</h4>
+        <p>The internal state of <b>Anemoi</b> is represented as a matrix with l columns and 2 rows: X and Y.
+        A round function is then a permutation of (F<sub>q</sub>)<sup>2l</sup>, where q is either a prime number or a power of 2.
         The function applied at each round r has a classical <b>Substitution-Permutation Network</b> (SPN) structure: first the constant addition, then the linear layer, and finally the S-box layer.</p>
 
        <h5>Constants addition</h5>
-        <p>Round constants are given using the following procedure:</p>
+       <p>For the constant addition we operate on each row separately. The operation consists in adding a vector C<sup>r</sup> to the row X and a vector D<sup>r</sup> to the row Y.
+       Round constants are given using the following procedure:</p>
 
   <pre style="width: 320px;">
   c<sub>i</sub><sup>r</sup> &larr; g(&pi;<sub>0</sub><sup>r</sup>)<sup>2</sup> + (&pi;<sub>0</sub><sup>r</sup> + &pi;<sub>1</sub><sup>i</sup>)<sup>&alpha;</sup>
@@ -94,6 +112,9 @@
 
 
         <h5>Linear layer</h5>
+        <p>The diffusion layer M also operates on X and Y separately, so that</p>
+  <pre style="width: 800px;">
+  M(X, Y) = (M<sub>x</sub>(X), M<sub>y</sub>(Y))   with M<sub>y</sub>(Y) = M<sub>x</sub>(&rho;(Y)) and &rho;(x<sub>0</sub>,...x<sub>l-1</sub>) = (x<sub>1</sub>,...x<sub>l-1</sub>,x<sub>0</sub>)</pre>
 
         <p>In practice, when l = 1, 2, 3 or 4, we use the matrices given by the following diagrams:</p>
 
@@ -114,17 +135,22 @@
 
 
         <h5>S-box: the Flystel</h5>
-
+        <p>If H is the open <b>Flystel</b> operating over (F<sub>q</sub>)<sup>2</sup>, then we have:</p>
+  <pre style="width: 390px;">
+  S(X, Y) = (H(x<sub>0</sub>, y<sub>0</sub>), ... H(x<sub>l-1</sub>, y<sub>l-1</sub>))</pre>
+        <p>Functions Q<sub>&gamma;</sub>, Q<sub>&delta;</sub> and E that compose the open <b>Flystel</b> then depend on the choice of the field. We propose the following ones:</p>
         <div style='display:flex'>
           <table>
             <caption>Flystel in F<sub>2<sup>n</sup></sub>.</caption>
-            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="200px"/></td>
+            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="220px"/></td>
           </table>
           <table>
             <caption>Flystel in F<sub>p</sub>.</caption>
-            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="200px"/></td>
+            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="220px"/></td>
           </table>
         </div>
+
+        <p>with &beta; = g, &gamma; = 0, &delta; = g<sup>-1</sup>. The value of &alpha; depends on the metrics, and must be chosen to give the most efficient algorithm.</p>
  
 
       <h4>Anemoi Permutations</h4>
@@ -177,6 +203,9 @@
 
 
         <h4>Mode: Jive</h4>
+
+        <p><b>Jive</b> is a dedicated mode for compression functions in a Merkle tree.
+        Given a permutation P of (F<sub>q</sub><sup>m</sup>)<sup>b</sup>, we can         construct a b-to-1 compression function as shown in the figures bellow.</p>
         
         <div style='display:flex'>
           <table>
