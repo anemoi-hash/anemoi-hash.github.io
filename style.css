@@ -30,14 +30,14 @@ b {
 
 .main {
   font-size: 100%;
-  width: 70%;
-  margin: 20px auto;
-  min-width: 460px;
-  min-height: 1020px;
+  /* width: 70%; */
+  /* margin: 20px auto; */
+  /* min-width: 460px; */
+  /* min-height: 1020px; */
   background-color: var(--background1-color);
   border: 1px solid #BEBEBE;
-  padding: 20px;
-  overflow: auto;
+  /* padding: 20px; */
+  /* overflow: auto; */
 
   -webkit-border-radius: 2px 2px 2px 2px;
      -moz-border-radius: 2px 2px 2px 2px;
