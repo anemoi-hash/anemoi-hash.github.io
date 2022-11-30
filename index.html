@@ -3,280 +3,517 @@
   <head>
     <meta charset='utf-8'>
     <title>Anemoi: a Family of ZK-friendly AO Hash Functions.</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
     <link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
+    <script type="text/x-mathjax-config">
+         MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"], tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }, "HTML-CSS": { availableFonts: ["TeX"] } });
+    </script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
   </head>
-  
+
   <body>
-  <div class="container">
-    WORK IN PROGRESS!
+      <div class="main">
+          WORK IN PROGRESS!
 
+          <header>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <h1>Anemoi</h1>
+                          <img src="Figures/logo-anemoi.png" alt="logo" class="anemoi-logo-title" />
+                      </div>
+                  </div>
+              </div>
+          </header>
+          <nav class="navbar navbar-expand-lg">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a href="#news">News</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#abstract">Abstract</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#description">Description</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#story">Story</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#team">Contact</a>
+                  </li>
+              </ul>
+          </nav>
 
-    <header>
-      <table><tr>
-        <td><h1>Anemoi &emsp;&emsp;</h1></td>
-        <td><img src="Figures/logo-anemoi.png" alt="logo" width="250px"/></td>
-      </tr></table>
-    </header>
-    
-    <nav>
-    <ul>
-    <li> <a href="#news">
-        News</a></li>
-    <li> <a href="#abstract">
-        Abstract</a></li>
-    <li> <a href="#description">
-        Description</a></li>
-    <li> <a href="#story">
-        Story</a></li>
-    <li> <a href="#team">
-        Contact</a></li>
-    </ul>
-  </nav>
-    
-    <h2>A Family of ZK-friendly AO Hash Functions.</h2>
+          <h2>A Family of ZK-friendly AO Hash Functions.</h2>
 
-    <div class="cont">
-      <div class="section" id="intro">
-        <p><b>Anemoi</b> is part of the <b>Arithmetization-Oriented</b> (AO) primitives designed for 
-        advanced cryptographic protocols such as <b>Zero-knowledge</b> (ZK) proofs of 
-        knowledge.
-        More precisely,	<b>Anemoi</b> is a new family of ZK-friendly permutations, that can 
-        be used to construct efficient hash functions and compression functions.<br>
+          <div class="container">
+              <section class="section" id="intro">
+                  <p>
+                      <b>Anemoi</b> is part of the <b>Arithmetization-Oriented</b> (AO) primitives designed for
+                      advanced cryptographic protocols such as <b>Zero-knowledge</b> (ZK) proofs of
+                      knowledge.
+                      More precisely,	<b>Anemoi</b> is a new family of ZK-friendly permutations, that can
+                      be used to construct efficient hash functions and compression functions.<br>
 
-        A short description of the design is provided on this page. For more details, please find bellow the following resources:
-        <ul>
-          <li> Our paper on ePrint: <a href="https://ia.cr/2022/840">https://ia.cr/2022/840</a>.</li>
-          <li> Our Git repository: <a href="https://github.com/anemoi-hash/anemoi-hash">https://github.com/anemoi-hash/anemoi-hash</a>.</li>
-        </ul>
-        </p>
+                      A short description of the design is provided on this page. For more details, please find bellow the following resources:
+                      <ul>
+                          <li> Our paper on ePrint: <a href="https://ia.cr/2022/840">https://ia.cr/2022/840</a>.</li>
+                          <li> Our Git repository: <a href="https://github.com/anemoi-hash/anemoi-hash">https://github.com/anemoi-hash/anemoi-hash</a>.</li>
+                      </ul>
+                  </p>
+              </section>
+
+              <section class="section" id="news">
+                  <h3>News</h3>
+                  <ul>
+                      <li>
+                          <b>16.11.22:</b> Presentation at
+                          <a href="https://zkproof.org/events/workshop5/">ZKProof5</a>.
+                          The YouTube recording is available <a href="https://www.youtube.com/watch?v=3EdbLiClFPI">here</a>.
+                      </li>
+                      <li>
+                          <b>22.10.22:</b> Acceptation for presentation at the <a href="https://zkproof.org/events/workshop5/">ZKProof5</a> workshop in Tel Aviv.
+                      </li>
+                      <li>
+                          <b>17.10.22:</b> Revised ePrint submission with better implementations provided by our new co-authors.
+                      </li>
+                      <li>
+                          <b>24.06.22:</b> First ePrint submission.
+                      </li>
+                  </ul>
+              </section>
+
+              <section class="section" id="abstract">
+                  <h3>Abstract</h3>
+                  <div class="section-content">
+                      <p style="font-size: 90%">
+                          Advanced cryptographic protocols such as
+                          Zero-knowledge (ZK) proofs of knowledge, widely used in cryptocurrency
+                          applications such as Zcash, Monero, Filecoin, demand new cryptographic
+                          hash functions that are efficient not only over the binary
+                          field $\mathbb{F}_{2}$, but
+                          also over large fields of prime characteristic
+                          $\mathbb{F}_{p}$. This need has been
+                          acknowledged by the wider community and new so-called
+                          <i>Arithmetization-Oriented</i> (AO) hash functions have been proposed,
+                          e.g. MiMC-Hash, Rescue–Prime, Poseidon, Reinforced Concrete and Griffin
+                          to name a few.
+                          <br />
+                          In this paper we propose Anemoi: a new family of ZK-friendly
+                          permutations, that can be used to construct efficient hash functions
+                          and compression functions. The main features of these algorithms are
+                          that 1) they are designed to be efficient within multiple proof
+                          systems (e.g. Groth16, Plonk, etc.), 2) they contain dedicated
+                          functions optimised for specific applications (namely Merkle tree
+                          hashing and general purpose hashing), 3) they have highly
+                          competitive performance e.g. about a factor of 2 improvement over
+                          Poseidon and Rescue–Prime in terms of R1CS constraints, a 28%-48%
+                          Plonk constraint reduction over a highly optimized Poseidon
+                          implementation, as well as competitive native performance, running
+                          between two and three times faster than Rescue–Prime, depending on
+                          the field size.
+                          <br />
+                          On the theoretical side, Anemoi pushes further the frontier in
+                          understanding the design principles that are truly entailed by
+                          arithmetization-orientation. In particular, we identify and exploit
+                          a previously unknown relationship between CCZ-equivalence and
+                          arithmetization-orientation. In addition, we propose two new
+                          standalone components that can be easily reused in new designs. One
+                          is a new S-box called Flystel, based on the well-studied butterfly
+                          structure, and the second is Jive – a new mode of operation,
+                          inspired by the “Latin dance” symmetric algorithms (Salsa, ChaCha
+                          and derivatives).
+                      </p>
+                  </div>
+              </section>
+
+              <section class="section" id="description">
+                  <h3>Description</h3>
+                  <div class="container">
+                      <h4>Flystel and CCZ-equivalence</h4>
+                      <div class="container">
+                          <p>
+                              The <b>Flystel</b> is a pair of functions inspired by the butterfly
+                              structure and a Feistel network. The open and closed <b>Flystel</b>
+                              rely on two quadratic functions $Q_{\gamma}$,
+                              $Q_{\delta}$ and a permutation E as shown in the following
+                              figures.
+                          </p>
+                          <div class="container" >
+                              <div class="row" >
+                                  <div class="col-lg-6 text-center">
+                                      <p class="caption" >Open Flystel H.</p>
+                                      <img src="Figures/open-flystel.png" alt="open-flystel" height="200px"/>
+                                  </div>
+                                  <div class="col-lg-6 text-center">
+                                      <p class="caption">Closed Flystel V.</p>
+                                      <img src="Figures/closed-flystel.png" alt="closed-flystel" height="200px"/>
+                                  </div>
+                              </div>
+                          </div>
+                          <p>
+                              While the open <b>Flystel</b> is a high degree permutation of
+                              $(\mathbb{F}_{q})^2$ the closed <b>Flystel</b> is a low degree
+                              function of $(\mathbb{F}_{q})^2$. Besides, the two variants are
+                              <b>CCZ-equivalent</b>, meaning that it is possible to encode the
+                              verification of the evaluation of the open <b>Flystel</b> $H$ using the
+                              polynomial representation of the closed <b>Flystel</b> $V$.
+                          </p>
+                      </div>
+                  </div>
+                  <div class="container">
+                      <h4>Round Function</h4>
+                      <div class="container">
+                          <p>
+                              The internal state of <b>Anemoi</b> is represented as a matrix with $l$ columns and 2 rows: $X$ and $Y$.
+                              A round function is then a permutation of
+                              $(\mathbb{F}_{q})^{2l}$, where $q$ is either a prime number or
+                              a power of 2.
+                              The function applied at each round $r$ has a classical
+                              <b>Substitution-Permutation Network</b> (SPN) structure: first the
+                              constant addition, then the linear layer, and finally the S-box
+                              layer.
+                          </p>
+                          <div class="container">
+                              <h5>Constants addition</h5>
+                              <div class="container">
+                                  <p>
+                                      For the constant addition we operate on each row separately. The
+                                      operation consists in adding a vector $C^r$ to the row $X$
+                                      and a vector $D^r$ to the row $Y$.
+                                      Round constants are given using the following procedure:
+                                  </p>
+
+                                  <div class="text-center">
+                                      $$c_{i}^{r} = g (\pi_{0}^{r})^{2} + (\pi_{0}^{r} + \pi_{1}^{r})^{\alpha}$$
+                                      $$d_{i}^{r} = g (\pi_{1}^{i})^{2} + (\pi_{0}^{r} + \pi_{1}^{i})^{\alpha} + g^{-1}$$
+                                  </div>
+
+                                  <p>where $\pi_{0}$ and $\pi_{1}$ are derived using the digits of $\pi$</p>
+                                  <div class="text-center">
+                                      $$\pi_{0} = 1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679$$
+                                      $$\pi_{1} = 8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196$$
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="container">
+                              <h5>Linear layer</h5>
+                              <div class="container">
+                                  <p>The diffusion layer M also operates on X and Y separately, so that</p>
+
+                                  <div class="container text-center">
+                                      $M(X, Y) = (M_{x}(X), M_{Y}(Y))$ with $M_{Y}(Y) = M_{X}(\rho(Y))$ and $\rho(x_0, \cdots, x_{l - 1}) = (x_{1}, \cdots, x_{l - 1}, x_{0})$
+                                  </div>
+
+                                  <p>
+                                      In practice, when $l = 1$, $2$, $3$ or
+                                      $4$, we use the matrices given by the
+                                      following diagrams:
+                                  </p>
+
+                                  <div class="container">
+                                      <div class="row">
+                                          <div class="col-lg-4 text-center">
+                                              <p class="caption">M for l = 1 or 2.</p>
+                                              <img src="Figures/matrix2.png" alt="matrix2" height="200px"/>
+                                          </div>
+                                          <div class="col-lg-4 text-center">
+                                              <p class="caption">M for l = 3.</p>
+                                              <img src="Figures/matrix3.png" alt="matrix3" height="200px"/>
+                                          </div>
+                                          <div class="col-lg-4 text-center">
+                                              <p class="caption">M for l = 4.</p>
+                                              <img src="Figures/matrix4.png" alt="matrix4" height="200px"/>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="container">
+                              <h5>S-box: the Flystel</h5>
+                              <div class="container">
+                                  <p>
+                                      If $H$ is the open <b>Flystel</b> operating over
+                                      $(\mathbb{F}_{q})^2$, then we have:
+                                  </p>
+
+                                  <div class="text-center">
+                                      $S(X, Y) = (H(x_0, y_0), \cdots, H(x_{l - 1}, y_{l - 1}))$
+                                  </div>
+
+                                  <p>
+                                      Functions $Q_{\gamma}$, $Q_{\delta}$ and $E$ that compose
+                                      the open <b>Flystel</b> then depend on the choice of the
+                                      field. We propose the following ones:
+                                  </p>
+
+                                  <div class="container" >
+                                      <div class="row">
+                                          <div class="col-lg-6 text-center">
+                                              <p class="caption"> Flystel in $\mathbb{F}_{2}^{n}$</p>
+                                              <img src="Figures/flystel-char2.png" alt="flystel-F2n" height="220px" />
+                                          </div>
+                                          <div class="col-lg-6 text-center">
+                                              <p class="caption" >Flystel in $\mathbb{F}_{p}$.</p>
+                                              <img src="Figures/flystel-prime.png" alt="flystel-Fp" height="220px"/>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <p>
+                                      with $\beta = g$, $\gamma; = 0$, $\delta = g^{-1}$. The
+                                      value of $\alpha$ depends on the metrics, and must be chosen to
+                                      give the most efficient algorithm.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="container">
+                          <h4> Anemoi Permutations</h4>
+                          <div class="container">
+                              <h5>The SPN construction</h5>
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-lg-12 text-center">
+                                          <p class="caption">Overview of the SPN construction for $l > 1$.</p>
+                                          <img src="Figures/SPN-flystel.png" alt="SPN-flystel" height="400px" />
+                                      </div>
+                                  </div>
+                                  <div class="row justify-content-center">
+                                      <div class="col-4 algorithm">
+                                          <p class="text-right">// Constant addition</p>
+                                          <p>
+                                              for $i \in \left\{0, ..., l - 1\right\}$ do
+                                              <br />
+                                              $\,\,\,\, x_{i} \leftarrow x_{i} + c_{i}^{r}$
+                                              <br />
+                                              $\,\,\,\, y_{i} \leftarrow y_{i} + d_{i}^{r}$
+                                          </p>
+                                          <p class="text-right">// Linear layer $M$</p>
+                                          <p>
+                                              if $l > 1$ then
+                                              <br />
+                                              $\,\,\,\, X \leftarrow M_{X}(X)$
+                                              <br />
+                                              $\,\,\,\, Y \leftarrow M_{X}(\rho(Y))$
+                                              <br />
+                                              else
+                                              <br />
+                                              $\,\,\,\, (x_{0}, y_{0}) \leftarrow M_{X}(x_{0}, y_{0})$
+                                              <br />
+                                              end if
+                                          </p>
+                                          <p class="text-right">// S-box layer $H$</p>
+                                          <p>
+                                              for $i \in \left\{0, \cdots, l - 1\right\}$ do
+                                              <br />
+                                              $\,\,\,\, x_{i} \leftarrow x_{i} - g Q(y_{i})$
+                                              <br />
+                                              $\,\,\,\, y_{i} \leftarrow y_{i} - (x_{i})^{\frac{1}{\alpha}}$
+                                              <br />
+                                              $\,\,\,\, x_{i} \leftarrow x_{i} + g Q(y_{i}) + g - 1$
+                                              <br />
+                                              end for
+                                          </p>
+                                          <p>
+                                              return $(X, Y)$
+                                          </p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <h5>Number of rounds</h5>
+                              <div class="container">
+                                  <p>
+                                      The <b>Anemoi</b> permutation iterates $n_{r}$ rounds of
+                                      the round function given above followed by a call to the
+                                      linear layer. We give the number of rounds for different
+                                      values of $l$ and $\alpha$.
+                                  </p>
+
+                                  <div class="container">
+                                      <div class="row justify-content-center">
+                                          <div class="col-4 text-center">
+                                              <p class="caption text-center" >Number of rounds for 128 bits of security.</p>
+                                              <table class="table">
+                                                  <thead>
+                                                      <tr>
+                                                          <th scope="col" class="headcells">$\alpha$</th>
+                                                          <th scope="col" class="headcells">3</th>
+                                                          <th scope="col" class="headcells">5</th>
+                                                          <th scope="col" class="headcells">7</th>
+                                                          <th scope="col" class="headcells">11</th>
+                                                          <th scope="col" class="headcells">13</th>
+                                                          <th scope="col" class="headcells">17</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      <tr>
+                                                          <th class="headcells">l = 1</th>
+                                                          <td class="cells">19</td>
+                                                          <td class="cells">19</td>
+                                                          <td class="cells">18</td>
+                                                          <td class="cells">18</td>
+                                                          <td class="cells">17</td>
+                                                          <td class="cells">16</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <th class="headcells">l = 2</th>
+                                                          <td class="cells">12</td>
+                                                          <td class="cells">12</td>
+                                                          <td class="cells">11</td>
+                                                          <td class="cells">11</td>
+                                                          <td class="cells">11</td>
+                                                          <td class="cells">10</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <th class="headcells">l = 3</th>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <th class="headcells">l = 4</th>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                          <td class="cells">10</td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="container">
+                          <h4>Mode: Jive</h4>
+                          <div class="container">
+                              <p>
+                                  <b>Jive</b> is a dedicated mode for compression functions in a
+                                  Merkle tree.
+                                  Given a permutation $P$ of $(\mathbb{F}_{q}^{m})^b$, we
+                                  can construct a b-to-1 compression function as shown in the figures
+                                  bellow.
+                              </p>
+
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-lg-6 text-center">
+                                          <p class="caption">Jive with $2$ branches.</p>
+                                          <img src="Figures/mode.png" alt="mode-2" height="200px"/>
+                                      </div>
+                                      <div class="col-lg-6 text-center">
+                                          <p class="caption">Jive with $b$ branches.</p>
+                                          <img src="Figures/mode-b.png" alt="mode-b" height="200px"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+
+                  <section class="section" id="story">
+                      <h3>Short story</h3>
+                      <div class="container">
+                          <h4>On the name</h4>
+                          <div class="container">
+                              <p>
+                                  <b>Anemoi</b> is a family of Greek Gods of winds, then it has
+                                  loose connection to butterflies which fly in the air, and that
+                                  inspired the design of the <b>Flystel</b>. The four wind
+                                  directions also symbolize the spread geographical location of the
+                                  <b>Anemoi</b> team.
+                              </p>
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-lg-6 text-center">
+                                          <img src="Figures/anemoi-alegory.png" alt="anemoi-alegory" height="200px"/>
+                                      </div>
+                                      <div class="col-lg-6 text-center">
+                                          <img src="Figures/anemoi-map.png" alt="anemoi-map" height="200px"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <h4>On the logo</h4>
+                          <div class="container">
+                              <p>
+                                  The butterflies: one with open wings, one with closed wings refer to
+                                  the open and closed <b>Flystel</b>. The two variants are
+                                  CCZ-equivalent which is symbolized by a mirror, more precisely a
+                                  sun-shaped to highlight that the closed <b>Flystel</b> makes the
+                                  strength of <b>Anemoi</b>. A cloud also reminds that <b>Anemoi</b>
+                                  represents Gods of wind.
+                              </p>
+
+                              <div class="container" >
+                                  <div class="row justify-content-center">
+                                      <div class="col-4 text-center">
+                                          <img src="Figures/logo-anemoi.png" alt="logo" width="150px"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+
+                  <section class="section" id="team">
+                      <h3>Anemoi team</h3>
+                      <div class="container">
+                          <ul>
+                              <li>
+                                  <a href="https://who.rocq.inria.fr/Clemence.Bouvier/">Clémence Bouvier</a>, Sorbonne University, France - Inria, France
+                              </li>
+                              <li>
+                                  <a href="https://who.rocq.inria.fr/Pierre.Briaud/">Pierre Briaud</a>, Sorbonne University, France - Inria, France
+                              </li>
+                              <li>
+                                  Pyrros Chaidos, National & Kapodistrian University of Athens, Greece
+                              </li>
+                              <li>
+                                  <a href="https://who.paris.inria.fr/Leo.Perrin/">Léo Perrin</a>, Inria, France
+                              </li>
+                              <li>
+                                  <a href="https://twitter.com/RobinSalen">Robin Salen</a>, Toposware, Inc., USA
+                              </li>
+                              <li>
+                                  Vesselin Velichkov, University of Edinburgh, Scotland - Clearmatics, England
+                              </li>
+                              <li>
+                                  <a href="https://dannywillems.github.io" >Danny Willems</a>, Nomadic Labs, France - Inria & LIX, France
+                              </li>
+                          </ul>
+                          <p>
+                              If you have any questions, please feel free to contact
+                              us at <a href="anemoi@inria.fr">anemoi@inria.fr</a>
+                          </p>
+                      </div>
+                  </section>
+                  <footer>
+                      <div class="container" >
+                          <div class="row text-center">
+                              <div class="col">
+                                  <img class="bottom-logo" src="Figures/logo_su.png" alt="logo-su" />
+                                  <img class="bottom-logo" src="Figures/logo_inria.png" alt="logo-inria" />
+                                  <img class="bottom-logo" src="Figures/logo_athens.png" alt="logo-athens" />
+                                  <img class="bottom-logo" src="Figures/logo_toposware.png" alt="logo-toposware" />
+                                  <img class="bottom-logo" src="Figures/logo_edinburgh.png" alt="logo-edinburgh" />
+                                  <img class="bottom-logo" src="Figures/logo_clearmatics.png" alt="logo-clearmatics" />
+                                  <img class="bottom-logo" src="Figures/logo_nomadic.png" alt="logo-nomadic" />
+                                  <img class="bottom-logo" src="Figures/logo_lix.png" alt="logo-lix" />
+                              </div>
+                          </div>
+                      </div>
+                  </footer>
       </div>
-
-      <div class="section" id="news">
-        <h3>News</h3>
-        <ul>
-          <li> <b>16.11.22:</b> Presentation at <a href="https://zkproof.org/events/workshop5/">ZKProof5</a>. The YouTube recording is available <a href="https://www.youtube.com/watch?v=3EdbLiClFPI">here</a>.</li>
-          <li> <b>22.10.22:</b> Acceptation for presentation at the <a href="https://zkproof.org/events/workshop5/">ZKProof5</a> workshop in Tel Aviv.</li>
-          <li> <b>17.10.22:</b> Revised ePrint submission with better implementations provided by our new co-authors.</li>
-          <li> <b>24.06.22:</b> First ePrint submission.</li>
-        </ul>
-      </div>
-
-
-      <div class="section" id="abstract">
-        <h3>Abstract</h3>
-
-        <p style="font-size: 90%">Advanced cryptographic protocols such as Zero-knowledge (ZK) proofs of knowledge, widely used in cryptocurrency applications such as Zcash, Monero, Filecoin, demand new cryptographic hash functions that are efficient not only over the binary field F2, but also over large fields of prime characteristic Fp. This need has been acknowledged by the wider community and new so-called <i>Arithmetization-Oriented</i> (AO) hash functions have been proposed, e.g. MiMC-Hash, Rescue–Prime, Poseidon, Reinforced Concrete and Griffin to name a few. <br>
-        In this paper we propose Anemoi: a new family of ZK-friendly permutations, that can be used to construct efficient hash functions and compression functions. The main features of these algorithms are that 1) they are designed to be efficient within multiple proof systems (e.g. Groth16, Plonk, etc.), 2) they contain dedicated functions optimised for specific applications (namely Merkle tree hashing and general purpose hashing), 3) they have highly competitive performance e.g. about a factor of 2 improvement over Poseidon and Rescue–Prime in terms of R1CS constraints, a 28%-48% Plonk constraint reduction over a highly optimized Poseidon implementation, as well as competitive native performance, running between two and three times faster than Rescue–Prime, depending on the field size. <br>
-        On the theoretical side, Anemoi pushes further the frontier in understanding the design principles that are truly entailed by arithmetization-orientation. In particular, we identify and exploit a previously unknown relationship between CCZ-equivalence and arithmetization-orientation. In addition, we propose two new standalone components that can be easily reused in new designs. One is a new S-box called Flystel, based on the well-studied butterfly structure, and the second is Jive – a new mode of operation, inspired by the “Latin dance” symmetric algorithms (Salsa, ChaCha and derivatives).</p>
-
-    </div>
-
-
-
-      <div class="section" id="description">
-        <h3>Description</h3>
-        
-        <h4>Flystel and CCZ-equivalence</h4>
-        <p>The <b>Flystel</b> is a pair of functions inspired by the butterfly structure and a Feistel network. The open and closed <b>Flystel</b> rely on two quadratic functions Q<sub>&gamma;</sub>, Q<sub>&delta;</sub> and a permutation E as shown in the following figures.</p>
-
-        <div style='display:flex'>
-          <table>
-            <caption>Open Flystel H.</caption>
-            <td><img src="Figures/open-flystel.png" alt="open-flystel" height="200px"/></td>
-          </table>
-          <table>
-            <caption>Closed Flystel V.</caption>
-            <td><img src="Figures/closed-flystel.png" alt="closed-flystel" height="200px"/></td>
-          </table>
-        </div>
-
-        <p>While the open <b>Flystel</b> is a high degree permutation of (F<sub>q</sub>)<sup>2</sup> the closed <b>Flystel</b> is a low degree function of (F<sub>q</sub>)<sup>2</sup>. Besides, the two variants are <b>CCZ-equivalent</b>, meaning that it is possible to encode the verification of the evaluation of the open <b>Flystel</b> H using the polynomial representation of the closed <b>Flystel</b> V.</p>
-
-
-        <h4>Round Function</h4>
-        <p>The internal state of <b>Anemoi</b> is represented as a matrix with l columns and 2 rows: X and Y.
-        A round function is then a permutation of (F<sub>q</sub>)<sup>2l</sup>, where q is either a prime number or a power of 2.
-        The function applied at each round r has a classical <b>Substitution-Permutation Network</b> (SPN) structure: first the constant addition, then the linear layer, and finally the S-box layer.</p>
-
-       <h5>Constants addition</h5>
-       <p>For the constant addition we operate on each row separately. The operation consists in adding a vector C<sup>r</sup> to the row X and a vector D<sup>r</sup> to the row Y.
-       Round constants are given using the following procedure:</p>
-
-  <pre style="width: 320px;">
-  c<sub>i</sub><sup>r</sup> &larr; g(&pi;<sub>0</sub><sup>r</sup>)<sup>2</sup> + (&pi;<sub>0</sub><sup>r</sup> + &pi;<sub>1</sub><sup>i</sup>)<sup>&alpha;</sup>
-  d<sub>i</sub><sup>r</sup> &larr; g(&pi;<sub>1</sub><sup>i</sup>)<sup>2</sup> + (&pi;<sub>0</sub><sup>r</sup> + &pi;<sub>1</sub><sup>i</sup>)<sup>&alpha;</sup> + g<sup>-1</sup></pre>
-
-        <p>where &pi;<sub>0</sub> and &pi;<sub>1</sub> are derived using the digits of &pi;:</p>
-  <pre style="width: 840px; font-size: 80%;">
-  &pi;<sub>0</sub>&nbsp;=&nbsp;1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
-  &pi;<sub>1</sub>&nbsp;=&nbsp;8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196</pre>
-
-
-        <h5>Linear layer</h5>
-        <p>The diffusion layer M also operates on X and Y separately, so that</p>
-  <pre style="width: 800px;">
-  M(X, Y) = (M<sub>x</sub>(X), M<sub>y</sub>(Y))   with M<sub>y</sub>(Y) = M<sub>x</sub>(&rho;(Y)) and &rho;(x<sub>0</sub>,...x<sub>l-1</sub>) = (x<sub>1</sub>,...x<sub>l-1</sub>,x<sub>0</sub>)</pre>
-
-        <p>In practice, when l = 1, 2, 3 or 4, we use the matrices given by the following diagrams:</p>
-
-        <div style='display:flex'>
-          <table>
-            <caption>M for l = 1 or 2.</caption>
-            <td><img src="Figures/matrix2.png" alt="matrix2" height="200px"/></td>
-          </table>
-          <table>
-            <caption>M for l = 3.</caption>
-            <td><img src="Figures/matrix3.png" alt="matrix3" height="200px"/></td>
-          </table>
-          <table>
-            <caption>M for l = 4.</caption>
-            <td><img src="Figures/matrix4.png" alt="matrix4" height="200px"/></td>
-          </table>
-        </div>
-
-
-        <h5>S-box: the Flystel</h5>
-        <p>If H is the open <b>Flystel</b> operating over (F<sub>q</sub>)<sup>2</sup>, then we have:</p>
-  <pre style="width: 390px;">
-  S(X, Y) = (H(x<sub>0</sub>, y<sub>0</sub>), ... H(x<sub>l-1</sub>, y<sub>l-1</sub>))</pre>
-        <p>Functions Q<sub>&gamma;</sub>, Q<sub>&delta;</sub> and E that compose the open <b>Flystel</b> then depend on the choice of the field. We propose the following ones:</p>
-        <div style='display:flex'>
-          <table>
-            <caption>Flystel in F<sub>2<sup>n</sup></sub>.</caption>
-            <td><img src="Figures/flystel-char2.png" alt="flystel-F2n" height="220px"/></td>
-          </table>
-          <table>
-            <caption>Flystel in F<sub>p</sub>.</caption>
-            <td><img src="Figures/flystel-prime.png" alt="flystel-Fp" height="220px"/></td>
-          </table>
-        </div>
-
-        <p>with &beta; = g, &gamma; = 0, &delta; = g<sup>-1</sup>. The value of &alpha; depends on the metrics, and must be chosen to give the most efficient algorithm.</p>
- 
-
-      <h4>Anemoi Permutations</h4>
-
-        <h5>The SPN construction</h5>
-
-        <table>
-          <caption>Overview of the SPN construction for l > 1.</caption>
-          <td><img src="Figures/SPN-flystel.png" alt="SPN-flystel" height="400px"/></td>
-        </table>
-
-  <pre style="width: 320px;">
-  <i>Constant addition</i>
-  for i &isin; {0, ..., l - 1} do
-    x<sub>i</sub> &larr; x<sub>i</sub> + c<sub>i</sub><sup>r</sup>
-    y<sub>i</sub> &larr; y<sub>i</sub> + d<sub>i</sub><sup>r</sup>
-  end for
-
-  <i>Linear layer M</i>
-  if l &#62; 1 then
-    X &larr; M<sub>x</sub>(X)
-    Y &larr; M<sub>x</sub>(&rho;(Y))
-  else
-    (x<sub>0</sub>, y<sub>0</sub>) &larr; M<sub>x</sub>(x<sub>0</sub>, y<sub>0</sub>)
-  end if
-
-  <i>S-box layer H</i>
-  for i &isin; {0, ..., l - 1} do
-    x<sub>i</sub> &larr; x<sub>i</sub> − g Q(y<sub>i</sub>)
-    y<sub>i</sub> &larr; y<sub>i</sub> − (x<sub>i</sub>)<sup>1/&alpha;</sup>
-    x<sub>i</sub> &larr; x<sub>i</sub> + g Q(y<sub>i</sub>) + g - 1
-  end for
-
-  return (X, Y)</pre>
-
-
-        <h5>Number of rounds</h5>
-
-        <p>The <b>Anemoi</b> permutation iterates n<sub>r</sub> rounds of the round function given above followed by a call to the linear layer. We give the number of rounds for different values of l and &alpha;.</p>
-
-        <table class="prettytab">
-        <caption>Number of rounds for 128 bits of security.</caption>
-        <colgroup><col style="width:100px"><col><col><col><col><col><col></colgroup>
-          <tr> <th class="headcells">&alpha;</th> <th class="headcells">3</th> <th class="headcells">5</th> <th class="headcells">7</th> <th class="headcells">11</th> <th class="headcells">13</th> <th class="headcells">17</th> </tr>
-          <tr> <th class="headcells">l = 1</th> <td class="cells">19</td> <td class="cells">19</td> <td class="cells">18</td> <td class="cells">18</td> <td class="cells">17</td> <td class="cells">16</td> </tr>
-          <tr> <th class="headcells">l = 2</th>  <td class="cells">12</td> <td class="cells">12</td> <td class="cells">11</td> <td class="cells">11</td> <td class="cells">11</td> <td class="cells">10</td> </tr>
-          <tr> <th class="headcells">l = 3</th> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> </tr>
-          <tr> <th class="headcells">l = 4</th> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> <td class="cells">10</td> </tr>
-        </table>
-
-
-        <h4>Mode: Jive</h4>
-
-        <p><b>Jive</b> is a dedicated mode for compression functions in a Merkle tree.
-        Given a permutation P of (F<sub>q</sub><sup>m</sup>)<sup>b</sup>, we can         construct a b-to-1 compression function as shown in the figures bellow.</p>
-        
-        <div style='display:flex'>
-          <table>
-            <caption>Jive with 2 branches.</caption>
-            <td><img src="Figures/mode.png" alt="mode-2" height="200px"/></td>
-          </table>
-          <table>
-            <caption>Jive with b branches.</caption>
-            <td><img src="Figures/mode-b.png" alt="mode-b" height="200px"/></td>
-          </table>
-        </div>
-
-      </div>
-
-      <div class="section" id="story">
-        <h3>Short story</h3>
-
-        <h4>On the name</h4>
-      <p><b>Anemoi</b> is a family of Greek Gods of winds, then it has loose connection to butterflies which fly in the air, and that inspired the design of the <b>Flystel</b>. The four wind directions also symbolize the spread geographical location of the <b>Anemoi</b> team.</p>
-            
-      <div style='display:flex'>
-        <table>
-        <td><img src="Figures/anemoi-alegory.png" alt="anemoi-alegory" height="200px"/></td>
-        </table>
-        <table>
-        <td><img src="Figures/anemoi-map.png" alt="anemoi-map" height="200px"/></td>
-        </table>
-      </div>
-
-        <h4>On the logo</h4>
-      <p>The butterflies: one with open wings, one with closed wings refer to the open and closed <b>Flystel</b>. The two variants are CCZ-equivalent which is symbolized by a mirror, more precisely a sun-shaped to highlight that the closed <b>Flystel</b> makes the strength of <b>Anemoi</b>. A cloud also reminds that <b>Anemoi</b> represents Gods of wind.</p>
-      <table><td><img src="Figures/logo-anemoi.png" alt="logo" width="150px"/></td></table>
-
-
-
-      </div>
-
-      <div class="section" id="team">
-        <h3>Anemoi team</h3>
-        <ul>
-          <li> <a href="https://who.rocq.inria.fr/Clemence.Bouvier/">Clémence Bouvier</a>, Sorbonne University, France - Inria, France</li>
-          <li> <a href="https://who.rocq.inria.fr/Pierre.Briaud/">Pierre Briaud</a>, Sorbonne University, France - Inria, France</li>
-          <li> Pyrros Chaidos, National & Kapodistrian University of Athens, Greece</li>
-          <li> <a href="https://who.paris.inria.fr/Leo.Perrin/">Léo Perrin</a>, Inria, France</li>
-          <li> <a href="https://twitter.com/RobinSalen">Robin Salen</a>, Toposware, Inc., USA</li>
-          <li> Vesselin Velichkov, University of Edinburgh, Scotland - Clearmatics, England</li>
-          <li> <a href="https://dannywillems.github.io" >Danny Willems</a>, Nomadic Labs, France - Inria & LIX, France</li>
-        </ul>
-
-        <p>If you have any questions, please feel free to contact us at <a>anemoi@inria.fr</a>.</p>
-
-        <br><br>
-        <table>
-          <td><img src="Figures/logo_su.png" alt="logo-su" height="25px"/></td>
-          <td><img src="Figures/logo_inria.png" alt="logo-inria" height="25px"/></td>
-          <td><img src="Figures/logo_athens.png" alt="logo-athens" height="25px"/></td>
-          <td><img src="Figures/logo_toposware.png" alt="logo-toposware" height="25px"/></td>
-          <td><img src="Figures/logo_edinburgh.png" alt="logo-edinburgh" height="25px"/></td>
-          <td><img src="Figures/logo_clearmatics.png" alt="logo-clearmatics" height="25px"/></td>
-          <td><img src="Figures/logo_nomadic.png" alt="logo-nomadic" height="25px"/></td>
-          <td><img src="Figures/logo_lix.png" alt="logo-lix" height="25px"/></td>
-        </table>
-        
-
-
-
-
-      </div>
-
-    </div>
-    </div>
   </body>
 </html>
