@@ -1,0 +1,193 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+
+
+% \tikzset{
+%   png export/.style={
+%     % First we call ImageMagick; change settings to requirements
+%     external/system call/.add={}{; convert -density 300 -transparent white "\image.pdf" "\image.png"},
+%     % Now we force the PNG figure to be used instead of the PDF
+%     /pgf/images/external info,
+%     /pgf/images/include external/.code={
+%       \includegraphics[width=\pgfexternalwidth,height=\pgfexternalheight]{##1.png}
+%     },
+%   }
+% }
+
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+
+\usepackage[english]{babel}
+
+% \usepackage{amsthm}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+
+\usepackage{hyperref}
+%\usepackage[a4paper,hmargin=1.5in,vmargin=1.5in]{geometry}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = blue, citecolor = red}
+\usepackage{cleveref}
+
+\usepackage{graphicx} % including pictures
+\usepackage[export]{adjustbox} % use max width and max height for figures
+
+
+\usepackage{caption}
+\captionsetup[table]{format=hang,justification=raggedright,position=bottom,skip=15pt,textfont={sl},labelfont={bf}}
+\captionsetup[figure]{format=hang,justification=raggedright,position=bottom,skip=15pt,textfont={sl},labelfont={bf}}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand{\LineComment}[1]{\State{\color{gray} \(\triangleright\) #1}}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shadows}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\tikzstyle{fun}=[draw,very thick,fill=white]
+\tikzstyle{fork}=[shape=circle,inner sep=0pt,minimum size=3pt,fill=black]
+\tikzstyle{op}=[inner sep=2pt]
+
+\usepackage{ifthen}
+\usepackage{comment}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{multicol} % To have lists over multiple columns
+
+\usepackage{color,soul} % \st strikeout, \hl hilight
+
+% To use monospace font in arrays easily
+\usepackage{array}
+\newcolumntype{t}{>{\tt}c}
+
+\newcommand\todo[1]{{\color{red}\textbf{TODO:} #1}}
+
+% \theoremstyle{theorem}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{maintheorem}{Main Theorem}
+% \newtheorem{proposition}{Proposition}
+% \newtheorem{conjecture}{Conjecture}
+% \newtheorem{observation}{Observation}
+% \newtheorem{goal}{Goal}
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{corollary}{Corollary}
+% \newtheorem{openproblem}{Open Problem}
+
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}
+% \newtheorem{caution}{Caution}
+
+% \theoremstyle{remark}
+% \newtheorem{remark}{Remark}
+
+\definecolor{colorE}{RGB}{180,100,250}
+\definecolor{colorE-1}{RGB}{100,100,250}
+\definecolor{colorQi}{RGB}{250,100,100}
+\definecolor{colorQf}{RGB}{250,100,180}
+\definecolor{colorP}{RGB}{250,200,150}
+
+\definecolor{colorM}{RGB}{200,120,255}
+\definecolor{colorH}{RGB}{90,150,255}
+
+
+\newcommand\diffusion{\mathcal{M}}
+\newcommand\diffusionX{\mathcal{M}_x}
+\newcommand\diffusionY{\mathcal{M}_y}
+\newcommand\addition{\mathcal{A}}
+\newcommand\sboxes{\mathcal{S}}
+\newcommand\butterflyOpen{\mathcal{H}}
+\newcommand\butterflyClosed{\mathcal{V}}
+\newcommand\feedforward{\mathcal{F}}
+\newcommand\feedforwardX{\mathcal{F}_x}
+\newcommand\feedforwardY{\mathcal{F}_y}
+
+\newcommand\pht{\mathcal{P}}
+
+
+\newcommand\constraints{\emph{\color{red}+1}}
+
+\newcommand\LL{\mathcal{L}}
+\newcommand\Z{\mathcal{Z}}
+\newcommand\complex{\mathbb{C}}
+\newcommand\F{\mathbb{F}}
+\newcommand\ftwo{\mathbb{F}_2}
+\newcommand\field[1]{\mathbb{F}_{#1}}
+\newcommand\Zmod[1]{\mathbb{Z}/ {#1} \mathbb{Z}}
+\newcommand\proba[1]{\mathrm{Pr}\left[ #1  \right]}
+\newcommand\bigoh{\mathrm{O}}
+\newcommand\trace{\mathrm{Tr}}
+\newcommand\traceSub[1]{\mathrm{Tr}_{#1}}
+\newcommand\charac[1]{\mathds{1}_{#1}}
+\newcommand\nwidth{t}
+
+
+\newcommand\xor{\textsc{xor}}
+\newcommand\xored{\textsc{xor}ed}
+\newcommand\xors{\textsc{xor}s}
+\newcommand\Tand{\textsc{And}}
+\newcommand\Tands{\textsc{And}s}
+
+\newcommand\kronecker[2]{\hat{\delta}\left( #1, #2 \right)}
+\newcommand\scalarprod[2]{\left\langle #1, #2 \right\rangle}
+\newcommand\walsh[1]{\mathcal{W}_{#1}}
+\newcommand\fourier[1]{\mathcal{W}_{#1}}
+\newcommand\ddt[1]{\delta_{#1}}
+\newcommand\identity{\mathcal{I}}
+\newcommand\hw{\mathrm{hw}}
+\newcommand\hweight[1]{\mathrm{hw}\left( #1 \right)}
+\newcommand\coveredby{\preccurlyeq}
+\newcommand\lat[1]{\mathcal{W}_{#1}}
+
+\newcommand\ind[2]{\mathbf{1}_{#1}\left( #2 \right)}
+
+\newcommand\closedbutterfly[3]{\mathsf{V}^{#1}_{#2, #3}}
+\newcommand\openbutterfly[3]{\mathsf{H}^{#1}_{#2, #3}}
+\newcommand\newbutterfly[1]{\mathsf{N}_{#1}}
+\newcommand\linearspan[1]{\langle #1 \rangle}
+\newcommand\rank{\mathrm{rank}}
+\newcommand\extract[1]{\mathcal{X}_{#1}}
+\newcommand\walshZeroes[1]{\mathcal{Z}_{#1}}
+\newcommand\ddtZeroes[1]{\mathcal{Z}^D_{#1}}
+
+
+
+% \newcommand\jacobian[2]{\mathrm{Jac}_{#2}#1}
+\newcommand\jacobian[2]{\mathrm{Jac}\ \! #1 (#2)}
+\newcommand\Jlin[2]{\mathrm{Jac}_{\rm lin}\ \! #1 (#2)}
+\newcommand\partialDiff[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand\permSet[1]{\mathfrak{S}_{#1}}
+
+\newcommand{\GL}[2]{\mathbf{GL}_{#1}(#2)}
+
+\newcommand{\ff}[1]{\mathbb{F}_{#1}} % finite field
+\newcommand\comatrice{\mathsf{Cof}}
+\newtheorem{modeling}{Modeling}
+\newtheorem{conj}{Conjecture}
+\newtheorem{conv}{Convention}
+\newtheorem{cor}{Corollary}
+\newtheorem{ass}{Assumption}
+\newtheorem{esti}{Estimate}
+
+\begin{document}
+
+% \tikzset{png export}
+
+\input{SPN-flystel.tex}
+
+\end{document}

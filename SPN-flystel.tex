@@ -1,0 +1,145 @@
+\begin{tikzpicture}[xscale=0.4,yscale=0.75]
+  \tiny
+  \begin{scope}[xshift=0cm]
+	  \node (x0) at (0.5, 0.5) {$x_{0}^r$} ;
+	  \node (x1) at (1.5, 0.5) {$x_{1}^r$} ;
+	  \node (x2) at (2.5, 0.5) {$x_{2}^r$} ;
+	  \node at (4, 0.5) {$...$} ;
+	  \node (xl) at (5.5, 0.5) {$x_{\ell-1}^r$} ;
+	  
+	  \node (c0) at (-1, -0.25) {$c_0^r$} ;
+	  \node (c1) at (-1, -0.875) {$c_1^r$} ;
+	  \node (c2) at (-1, -1.5) {$c_2^r$} ;
+	  \node at (-1, -1.875) {$\vdots$} ;
+	  \node (cl) at (-1, -2.5) {$c_{\ell-1}^r$} ;
+	  
+	  \node[inner sep=0] (addx0) at (0.5, -0.25) {$\boxplus$} ;
+	  \node[inner sep=0] (addx1) at (1.5, -0.875) {$\boxplus$} ;
+	  \node[inner sep=0] (addx2) at (2.5, -1.5) {$\boxplus$} ;
+	  \node[inner sep=0] (addxl) at (5.5, -2.5) {$\boxplus$} ;
+	  
+	  \draw[->] (x0) -- (addx0) -- (0.5, -3);
+	  \draw[->] (c0) -- (addx0);
+
+	  \draw[->] (x1) -- (addx1) -- (1.5, -3);
+	  \draw[->] (c1) -- (addx1);
+
+	  \draw[->] (x2) -- (addx2) -- (2.5, -3);
+	  \draw[->] (c2) -- (addx2);
+
+	  \draw[->] (xl) -- (addxl) -- (5.5, -3);
+	  \draw[->] (cl) -- (addxl);
+
+	  \node (u0) at (0.5, -9) {$x_{0}^{r+1}$} ;
+	  \node (u1) at (1.5, -9) {$x_{1}^{r+1}$} ;
+	  \node (u2) at (2.5, -9) {$x_{2}^{r+1}$} ;
+	  \node at (4, -9) {$...$} ;
+	  \node (ul) at (5.5, -9) {$x_{\ell-1}^{r+1}$} ;
+
+	  \draw[rounded corners=2pt,fill=colorM!50] (0, -4) rectangle (6, -3) node[pos=0.5]{$\diffusionX$} ;
+  \end{scope}
+
+  \begin{scope}[xshift=7cm]
+	  \node (y0) at (0.5, 0.5) {$y_{0}^r$} ;
+	  \node (y1) at (1.5, 0.5) {$y_{1}^r$} ;
+	  \node (y2) at (2.5, 0.5) {$y_{2}^r$} ;
+	  \node at (4, 0.5) {$...$} ;
+	  \node (yl) at (5.5, 0.5) {$y_{\ell-1}^r$} ;
+	  
+	  \node (d0) at (7, -0.25) {$d_0^r$} ;
+	  \node (d1) at (7, -0.875) {$d_1^r$} ;
+	  \node (d2) at (7, -1.5) {$d_2^r$} ;
+	  \node at (7, -1.875) {$\vdots$} ;
+	  \node (dl) at (7, -2.5) {$d_{\ell-1}^r$} ;
+
+	  \node[inner sep=0] (addy0) at (0.5, -0.25) {$\boxplus$} ;
+	  \node[inner sep=0] (addy1) at (1.5, -0.875) {$\boxplus$} ;
+	  \node[inner sep=0] (addy2) at (2.5, -1.5) {$\boxplus$} ;
+	  \node[inner sep=0] (addyl) at (5.5, -2.5) {$\boxplus$} ; 
+	  
+	  \draw[->] (y0) -- (addy0) -- (0.5, -3);
+	  \draw[->] (d0) -- (addy0);
+
+	  \draw[->] (y1) -- (addy1) -- (1.5, -3);
+	  \draw[->] (d1) -- (addy1);
+
+	  \draw[->] (y2) -- (addy2) -- (2.5, -3);
+	  \draw[->] (d2) -- (addy2);
+ 
+	  \draw[->] (yl) -- (addyl) -- (5.5, -3);
+	  \draw[->] (dl) -- (addyl);
+
+	  \node (v0) at (0.5, -9) {$y_{0}^{r+1}$} ;
+	  \node (v1) at (1.5, -9) {$y_{1}^{r+1}$} ;
+	  \node (v2) at (2.5, -9) {$y_{2}^{r+1}$} ;
+	  \node at (4, -9) {$...$} ;
+	  \node (vl) at (5.5, -9) {$y_{\ell-1}^{r+1}$} ;
+
+	  \draw[rounded corners=2pt,fill=colorM!50] (0, -4) rectangle (6, -3) node[pos=0.5]{$\diffusionY$} ;
+  \end{scope}
+
+
+	% Before S-box %
+
+  	\node[inner sep=0] (add1x) at (0.5, -5.75) {$\boxplus$} ;
+  	\node[inner sep=0] (add1y) at (1.5, -5.25) {$\boxplus$} ;
+
+  	\node[inner sep=0] (add2x) at (2.5, -5.75) {$\boxplus$} ;
+  	\node[inner sep=0] (add2y) at (3.5, -5.25) {$\boxplus$} ;
+
+  	\node[inner sep=0] (add3x) at (4.5, -5.75) {$\boxplus$} ;
+  	\node[inner sep=0] (add3y) at (5.5, -5.25) {$\boxplus$} ;
+
+  	\node[inner sep=0] (addlx) at (11.5, -5.75) {$\boxplus$} ;
+  	\node[inner sep=0] (addly) at (12.5, -5.25) {$\boxplus$} ;
+
+  	%1st Flystel
+	\draw[->] (0.5, -4) -- (add1x) -- (0.5, -6.5) ;
+	\draw[->] (7.5, -4) -- (7.5, -4.25) -- (1.5, -4.75) -- (add1y) -- (1.5, -6.5);
+	\draw[->] (0.5, -5.25) -- (add1y);
+	\draw[->] (1.5, -5.75) -- (add1x);
+
+	%2nd Flystel
+	\draw[->] (1.5, -4) -- (1.5, -4.25) -- (2.5, -4.75) -- (add2x) -- (2.5, -6.5) ;
+	\draw[->] (8.5, -4) -- (8.5, -4.25) -- (3.5, -4.75) -- (add2y) -- (3.5, -6.5);
+	\draw[->] (2.5, -5.25) -- (add2y);
+	\draw[->] (3.5, -5.75) -- (add2x);
+
+	%3rd Flystel
+	\draw[->] (2.5, -4) -- (2.5, -4.25) -- (4.5, -4.75) -- (add3x) -- (4.5, -6.5) ;
+	\draw[->] (9.5, -4) -- (9.5, -4.25) -- (5.5, -4.75) -- (add3y) -- (5.5, -6.5);
+	\draw[->] (4.5, -5.25) -- (add3y);
+	\draw[->] (5.5, -5.75) -- (add3x);
+
+	%last Flystel
+	\draw[->] (5.5, -4) -- (5.5, -4.25) -- (11.5, -4.75) -- (addlx) -- (11.5, -6.5);
+	\draw[->] (12.5, -4) -- (addly) -- (12.5, -6.5) ;
+	\draw[->] (11.5, -5.25) -- (addly);
+	\draw[->] (12.5, -5.75) -- (addlx);
+
+	\draw[rounded corners=2pt,fill=colorH!50] (0.1, -7.5) rectangle node {$\butterflyOpen$} (1.9, -6.5) ;
+	\draw[rounded corners=2pt,fill=colorH!50] (2.1, -7.5) rectangle node {$\butterflyOpen$} (3.9, -6.5) ;
+	\draw[rounded corners=2pt,fill=colorH!50] (4.1, -7.5) rectangle node {$\butterflyOpen$} (5.9, -6.5) ;
+	\draw[rounded corners=2pt,fill=colorH!50] (11.1, -7.5) rectangle node {$\butterflyOpen$} (12.9, -6.5) ;
+	
+	\node at (8.5,-7) {$\ldots$};
+	
+	% After S-box %
+
+	%1st Flystel
+	\draw[->] (0.5, -7.5) -- (u0) ;
+	\draw[->] (1.5, -7.5) -- (1.5, -7.75) -- (7.5, -8.25) -- (v0);
+	
+	%2nd Flystel
+	\draw[->] (2.5, -7.5) -- (2.5, -7.75) -- (1.5, -8.25) -- (u1);
+	\draw[->] (3.5, -7.5) -- (3.5, -7.75) -- (8.5, -8.25) -- (v1);
+
+	%3rd Flystel
+	\draw[->] (4.5, -7.5) -- (4.5, -7.75) -- (2.5, -8.25) -- (u2);
+	\draw[->] (5.5, -7.5) -- (5.5, -7.75) -- (9.5, -8.25) -- (v2);
+
+	%last Flystel
+	\draw[->] (11.5, -7.5) -- (11.5, -7.75) -- (5.5, -8.25) -- (ul) ;
+	\draw[->] (12.5, -7.5) -- (vl) ;
+
+\end{tikzpicture}
