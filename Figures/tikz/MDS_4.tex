@@ -1,0 +1,43 @@
+\begin{tikzpicture}[xscale=0.4,yscale=0.35]
+  % nodes
+  \draw (-2, 0.5) node (x0) {$x_0$} ;
+  \draw ( 0, 0.5) node (x1) {$x_1$} ;
+  \draw ( 3, 0.5) node (x2) {$x_2$} ;
+  \draw ( 6, 0.5) node (x3) {$x_3$} ;
+  \draw (-2, -1) node[inner sep=0] (add0) {$\boxplus$} ;
+  \draw ( 3, -1) node[inner sep=0] (add1) {$\boxplus$} ;
+  \draw ( 6, -2) node[inner sep=0] (add2) {$\boxplus$} ;
+  \draw ( 0, -3.5) node[inner sep=0] (add3) {$\boxplus$} ;
+  \draw ( 3, -5) node[inner sep=0] (add4) {$\boxplus$} ;
+  \draw (-2, -6) node[inner sep=0] (add5) {$\boxplus$} ;
+  \draw (0, -7) node[inner sep=0] (add6) {$\boxplus$} ;
+  \draw (6, -8) node[inner sep=0] (add7) {$\boxplus$} ;
+  \draw (1, -2.5) rectangle (2, -1.5) node [pos=0.5] {$g$} ;
+  \draw (-0.5, -5.5) rectangle (0.5, -4.5) node [pos=0.5] {$g$} ;
+  \draw (4, -5.5) rectangle (5, -4.5) node [pos=0.5] {$g$} ;
+
+  % arrows
+  \draw[->] (x0) -- (add0) ;
+  \draw[->] (x2) -- (add1) ;
+  \draw[->] (x3) -- (add2) ;
+  \draw[->] (x1) -- (add3) ;
+  \draw[->] ( 0, -1) -- (add0) ;
+  \draw[->] ( 6, -1) -- (add1) ;
+  \draw[->] (-2, -2) -- (1, -2) ;
+  \draw[->] ( 2, -2) -- (add2) ;
+  \draw[->] ( 3, -3.5) -- (add3) ;
+  \draw[->] (add0) -- (add5) ;
+  \draw[->] (add2) -- (add7) ;
+  \draw[->] (add1) -- (add4) ;
+  \draw[->] (add3) -- (0, -4.5) ;
+  \draw[->] ( 6, -5) -- ( 5, -5);
+  \draw[->] ( 4, -5) -- (add4) ;
+  \draw[->] ( 0, -5.5) -- (add6) ;
+  \draw[->] ( 0, -6) -- (add5) ;
+  \draw[->] ( 3, -7) -- (add6) ;
+  \draw[->] (-2, -8) -- (add7) ;
+  \draw[->] (add4) -- ( 3, -9) ;
+  \draw[->] (add5) -- (-2, -9) ;
+  \draw[->] (add6) -- ( 0, -9) ;
+  \draw[->] (add7) -- ( 6, -9) ;
+\end{tikzpicture}

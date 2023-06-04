@@ -1,0 +1,19 @@
+\begin{tikzpicture}[xscale=0.5,yscale=0.6]
+  % nodes
+  \draw (-2, 0.5) node (x0) {$x_0$} ;
+  \draw ( 2, 0.5) node (x1) {$x_1$} ;
+  \draw (-2, -1) node[inner sep=0] (add0) {$\boxplus$} ;
+  \draw (2, -3) node[inner sep=0] (add1) {$\boxplus$} ;
+  \draw (-0.5, -1.5) rectangle (0.5, -0.5) node [pos=0.5] {$g$} ;
+  \draw (-0.5, -3.5) rectangle (0.5, -2.5) node [pos=0.5] {$g$} ;
+
+  % arrows
+  \draw[->] (x0) -- (add0) ;
+  \draw[->] (x1) -- (add1) ;
+  \draw[->] (-0.5, -1) -- (add0);
+  \draw[->] (2, -1) -- (0.5, -1);
+  \draw[->] (-2, -3) -- (-0.5, -3) ;
+  \draw[->] (0.5, -3) -- (add1);
+  \draw[->] (add0) -- (-2, -4) ;
+  \draw[->] (add1) -- (2, -4) ;
+\end{tikzpicture}
