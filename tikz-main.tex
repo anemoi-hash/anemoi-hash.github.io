@@ -3,18 +3,6 @@
 \usepackage{tikz}
 
 
-% \tikzset{
-%   png export/.style={
-%     % First we call ImageMagick; change settings to requirements
-%     external/system call/.add={}{; convert -density 300 -transparent white "\image.pdf" "\image.png"},
-%     % Now we force the PNG figure to be used instead of the PDF
-%     /pgf/images/external info,
-%     /pgf/images/include external/.code={
-%       \includegraphics[width=\pgfexternalwidth,height=\pgfexternalheight]{##1.png}
-%     },
-%   }
-% }
-
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
 
@@ -185,8 +173,6 @@
 \newtheorem{esti}{Estimate}
 
 \begin{document}
-
-% \tikzset{png export}
 
 \input{SPN-flystel.tex}
 
