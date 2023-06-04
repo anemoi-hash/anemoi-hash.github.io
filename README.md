@@ -15,6 +15,8 @@ pdflatex -output-directory=_build tikz-main.tex
 convert -density 300 -background white -alpha remove -alpha off _build/tikz-main.pdf tikz-main.png
 ```
 
+and copy the PNG in the directory `Figures/png/`.
+
 Be sure to use the latest release of ImageMagick.
 You can compile it from source:
 ```

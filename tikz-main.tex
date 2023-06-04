@@ -8,16 +8,12 @@
 
 \usepackage[english]{babel}
 
-% \usepackage{amsthm}
-
-
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{mathrsfs}
 
 \usepackage{hyperref}
-%\usepackage[a4paper,hmargin=1.5in,vmargin=1.5in]{geometry}
 \hypersetup{colorlinks = true, urlcolor = blue, linkcolor = blue, citecolor = red}
 \usepackage{cleveref}
 
@@ -36,7 +32,10 @@
 \usepackage{pgfplots}
 \usepackage{subcaption}
 \usepackage{graphicx}
+
+% tikz configuration
 \usepackage{tikz}
+
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
@@ -62,26 +61,6 @@
 % To use monospace font in arrays easily
 \usepackage{array}
 \newcolumntype{t}{>{\tt}c}
-
-\newcommand\todo[1]{{\color{red}\textbf{TODO:} #1}}
-
-% \theoremstyle{theorem}
-% \newtheorem{theorem}{Theorem}
-% \newtheorem{maintheorem}{Main Theorem}
-% \newtheorem{proposition}{Proposition}
-% \newtheorem{conjecture}{Conjecture}
-% \newtheorem{observation}{Observation}
-% \newtheorem{goal}{Goal}
-% \newtheorem{lemma}{Lemma}
-% \newtheorem{corollary}{Corollary}
-% \newtheorem{openproblem}{Open Problem}
-
-% \theoremstyle{definition}
-% \newtheorem{definition}{Definition}
-% \newtheorem{caution}{Caution}
-
-% \theoremstyle{remark}
-% \newtheorem{remark}{Remark}
 
 \definecolor{colorE}{RGB}{180,100,250}
 \definecolor{colorE-1}{RGB}{100,100,250}
@@ -153,8 +132,6 @@
 \newcommand\ddtZeroes[1]{\mathcal{Z}^D_{#1}}
 
 
-
-% \newcommand\jacobian[2]{\mathrm{Jac}_{#2}#1}
 \newcommand\jacobian[2]{\mathrm{Jac}\ \! #1 (#2)}
 \newcommand\Jlin[2]{\mathrm{Jac}_{\rm lin}\ \! #1 (#2)}
 \newcommand\partialDiff[2]{\frac{\partial #1}{\partial #2}}
@@ -172,8 +149,10 @@
 \newtheorem{ass}{Assumption}
 \newtheorem{esti}{Estimate}
 
+\newcommand\generator{g}
+
 \begin{document}
 
-\input{SPN-flystel.tex}
+\input{Figures/tikz/flystel-prime.tex}
 
 \end{document}
