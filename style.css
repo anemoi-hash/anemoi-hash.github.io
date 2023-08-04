@@ -184,7 +184,7 @@ nav a:hover {
   padding: 8px;
   margin-bottom: 5px;
   color: var(--heading-color);
-  text-decoration: underline solid;
+  /*text-decoration: underline solid;*/
   font-size:85%;
 }
 
